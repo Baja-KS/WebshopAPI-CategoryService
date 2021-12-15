@@ -86,9 +86,6 @@ platform:
 steps:
   - name: build_and_publish-amd64
     image:  banzaicloud/drone-kaniko #plugins/docker
-    commands:
-      - ls -al /kaniko/.docker
-      - cat /kaniko/.docker/config.json
     settings:
       repo: bajaks/webshop-api-microservices.category-service
       username:

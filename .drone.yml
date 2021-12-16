@@ -97,6 +97,7 @@ steps:
     #  - echo "{\"auths\":{\"$REGISTRY_URL\":{\"auth\":\"$(echo -n ${USERNAME}:${PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
     settings: 
       repo: bajaks/webshop-api-microservices.category-service
+      registry: index.docker.io/v1
       username: 
         from_secret:  dockerhub_username 
       password: 

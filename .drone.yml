@@ -85,24 +85,17 @@ platform:
 
 steps:
   - name: build_and_publish-amd64-kaniko
-    image:  banzaicloud/drone-kaniko  #dokfish/drone-kaniko:v1.1  #ghcr.io/finitum/drone-kaniko:0.7.0
+    image:  banzaicloud/drone-kaniko   #gcr.io/kaniko-project/executor:latest
     #environment:
-    #  TAG: ${DRONE_BUILD_NUMBER}-amd64-kaniko
-    #  BASE64_TOKEN:
-    #    from_secret:  BASE64_TOKEN
-    #  REGISTRY_USER:  "bajaks"
-    #  DOCKERFILE_PATH:  "./Dockerfile"
-    #  REGISTRY: "index.docker.io"
-    #  PROJECT_ID: "bajaks"
-    #  IMAGE_PATH: "webshop-api-microservices.category-service"
+    #  USERNAME:
+    #    from_secret:  docker_username
+    #  PASSWORD:
+    #    from_secret:  docker_pass
+    #  REGISTRY_URL: https://index.docker.io/v1
     #commands:
-    #  - /workspace/entrypoint.sh
-    #  - ls /kaniko
-    #  - mkdir /kaniko/.docker
-    #  - cp ~/.docker/config.json /kaniko/.docker/config.json
-    #  - cp ~/.docker/config.json /kaniko/config.json
-    #  - cat /kaniko/executor
-    #  - /kaniko/executor -f $DOCKERFILE_PATH  -d "$REGISTRY/$PROJECT_ID/$IMAGE_PATH:$TAG"  -c dir://./ --cache
+    #  - mkdir -p /kaniko/.docker
+    #  - echo "{\"auths\":{\"$REGISTRY_URL\":{\"auth\":\"$(echo -n ${USERNAME}:${PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
+    #  - /kaniko/executor --context ${ 
     settings: 
       repo: bajaks/webshop-api-microservices.category-service
       username: 
@@ -111,8 +104,3 @@ steps:
         from_secret:  dockerhub_pass
       tags: ${DRONE_BUILD_NUMBER}-amd64-kaniko
       cache: true
-      skip_tls_verify: false
-      registry: https://index.docker.io/v1
-      build_args:
-      - COMMIT_SHA=${DRONE_COMMIT_SHA}
-      - COMMIT_AUTHOR_EMAIL=${DRONE_COMMIT_AUTHOR_EMAIL}

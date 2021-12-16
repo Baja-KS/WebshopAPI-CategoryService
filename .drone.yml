@@ -92,7 +92,7 @@ steps:
         from_secret:  BASE64_TOKEN
       REGISTRY_USER:  "bajaks"
       DOCKERFILE_PATH:  "./Dockerfile"
-      REGISTRY: "index.docker.io"
+      REGISTRY: "index.docker.io/v1"
       PROJECT_ID: "bajaks"
       IMAGE_PATH: "webshop-api-microservices.category-service"
     commands:

@@ -95,8 +95,10 @@ steps:
       TAG:  ${DRONE_BUILD_NUMBER}-amd64-kaniko
     commands:
       - mkdir -p /kaniko/.docker
-      - echo "{\"auths\":{\"$REGISTRY_URL\":{\"auth\":\"$(echo -n ${USERNAME}:${PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
-      - /kaniko/executor -f ./ -d "$REGISTRY_URL/bajaks/webshop-api-microservices.category-service:$TAG" -c . --cache
+      - |
+        echo "{\"auths\":{\"$REGISTRY_URL\":{\"auth\":\"$(echo -n ${USERNAME}:${PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
+      - |
+        /kaniko/executor -f ./ -d "$REGISTRY_URL/bajaks/webshop-api-microservices.category-service:$TAG" -c . --cache
         #settings: 
         #  repo: bajaks/webshop-api-microservices.category-service
         #  #registry: index.docker.io/v1

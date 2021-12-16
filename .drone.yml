@@ -87,7 +87,7 @@ steps:
   - name: build_and_publish-amd64-kaniko
     image:  ghcr.io/finitum/drone-kaniko:0.7.0
     cache: true
-    skip_tls_verify: false 
+    skip_tls_verify:  true 
     build_args:
     - COMMIT_SHA=${DRONE_COMMIT_SHA}
     - COMMIT_AUTHOR_EMAIL=${DRONE_COMMIT_AUTHOR_EMAIL}

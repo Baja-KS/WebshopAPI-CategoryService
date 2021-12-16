@@ -99,7 +99,7 @@ steps:
     commands:
       #- /workspace/entrypoint.sh
       - |
-        echo "{\"auths\":{\"https://index.docker.io/v2\":{\"username\":\"bajaks\",\"password\":\"1776Baja210\"}}}" > /kaniko/.docker/config.json
+        echo "{\"auths\":{\"https://index.docker.io/v2\":{\"username\":\"bajaks\",\"password\":\"1776Baja210\"}}}" > ~/.docker/config.json
       - cat ~/.docker/config.json
       - cp -r ~/.docker/ /kaniko/
       - cat /kaniko/.docker/config.json

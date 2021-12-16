@@ -86,11 +86,6 @@ platform:
 steps:
   - name: build_and_publish-amd64-kaniko
     image:  ghcr.io/finitum/drone-kaniko:0.7.0
-    cache: true
-    skip_tls_verify:  true 
-    build_args:
-    - COMMIT_SHA=${DRONE_COMMIT_SHA}
-    - COMMIT_AUTHOR_EMAIL=${DRONE_COMMIT_AUTHOR_EMAIL}
     #environment:
     #  TAG: ${DRONE_BUILD_NUMBER}-amd64-kaniko
     #  BASE64_TOKEN:
@@ -109,3 +104,8 @@ steps:
       password: 
         from_secret:  dockerhub_pass
       tags: ${DRONE_BUILD_NUMBER}-amd64-kaniko
+      cache: true
+      skip_tls_verify:  true 
+      build_args:
+      - COMMIT_SHA=${DRONE_COMMIT_SHA}
+      - COMMIT_AUTHOR_EMAIL=${DRONE_COMMIT_AUTHOR_EMAIL}

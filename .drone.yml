@@ -85,7 +85,7 @@ platform:
 
 steps:
   - name: build_and_publish-amd64
-    image:  banzaicloud/drone-kaniko #plugins/docker
+    image:  banzaicloud/drone-kaniko 
     settings:
       repo: bajaks/webshop-api-microservices.category-service
       username:

@@ -93,4 +93,4 @@ steps:
       password: 
         from_secret:  dockerhub_pass
       tags: ${DRONE_BUILD_NUMBER}-amd64
-      cache: true
+      #cache: true

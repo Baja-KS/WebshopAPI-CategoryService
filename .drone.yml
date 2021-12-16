@@ -92,13 +92,13 @@ steps:
         from_secret:  BASE64_TOKEN
       REGISTRY_USER:  "bajaks"
       DOCKERFILE_PATH:  "./Dockerfile"
-      REGISTRY: "index.docker.io/v1"
+      REGISTRY: "index.docker.io"
       PROJECT_ID: "bajaks"
       IMAGE_PATH: "webshop-api-microservices.category-service"
     commands:
       - /workspace/entrypoint.sh
-      - ls ~/.docker
-      - cat ~/.docker/config.json
+      - ls
+      - ls /home
       - /kaniko/executor -f $DOCKERFILE_PATH  -d "$REGISTRY/$PROJECT_ID/$IMAGE_PATH:$TAG"  -c dir://./ --cache
     #settings: 
     #  repo: bajaks/webshop-api-microservices.category-service

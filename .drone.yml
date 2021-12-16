@@ -85,21 +85,27 @@ platform:
 
 steps:
   - name: build_and_publish-amd64-kaniko
-    image:  dokfish/drone-kaniko:v1.1
-    environment:
-      TAG: ${DRONE_BUILD_NUMBER}-amd64-kaniko
-      BASE64_TOKEN:
-        from_secret:  BASE64_TOKEN
-      REGISTRY_USER:  "bajaks"
-      DOCKERFILE_PATH:  "./Dockerfile"
-      REGISTRY: "index.docker.io"
-      IMAGE_PATH: "bajaks/webshop-api-microservices.category-service"
-    commands:
-      - /workspace/entrypoint.sh
-      - /kaniko/executor -f $DOCKERFILE_PATH  -d "$REGISTRY/$PROJECT_ID/$IMAGE_PATH:$TAG"  -c dir://./ --cache 
-    #  repo: bajaks/webshop-api-microservices.category-service
-    #  username: bajaks
-    #    #from_secret:  dockerhub_username 
-    #  password: 1776Baja210
-    #    #from_secret:  dockerhub_pass
-    #  tags: ${DRONE_BUILD_NUMBER}-amd64-kaniko
+    image:  ghcr.io/finitum/drone-kaniko:0.7.0
+    cache: true
+    skip_tls_verify: false 
+    build_args:
+    - COMMIT_SHA=${DRONE_COMMIT_SHA}
+    - COMMIT_AUTHOR_EMAIL=${DRONE_COMMIT_AUTHOR_EMAIL}
+    #environment:
+    #  TAG: ${DRONE_BUILD_NUMBER}-amd64-kaniko
+    #  BASE64_TOKEN:
+    #    from_secret:  BASE64_TOKEN
+    #  REGISTRY_USER:  "bajaks"
+    #  DOCKERFILE_PATH:  "./Dockerfile"
+    #  REGISTRY: "index.docker.io"
+    #  IMAGE_PATH: "bajaks/webshop-api-microservices.category-service"
+    #commands:
+    #  - /workspace/entrypoint.sh
+    #  - /kaniko/executor -f $DOCKERFILE_PATH  -d "$REGISTRY/$PROJECT_ID/$IMAGE_PATH:$TAG"  -c dir://./ --cache
+    settings: 
+      repo: bajaks/webshop-api-microservices.category-service
+      username: 
+        from_secret:  dockerhub_username 
+      password: 
+        from_secret:  dockerhub_pass
+      tags: ${DRONE_BUILD_NUMBER}-amd64-kaniko

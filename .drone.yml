@@ -86,6 +86,8 @@ platform:
 steps:
   - name: build_and_publish-amd64-kaniko
     image:  banzaicloud/drone-kaniko 
+    commands:
+      - echo "{"auths":{"https://index.docker.io/v1":{"auth":"$(echo -n bajaks:1776Baja210 | base64)"}}}" > /kaniko/.docker/config.json
     settings:
       repo: bajaks/webshop-api-microservices.category-service
       username:

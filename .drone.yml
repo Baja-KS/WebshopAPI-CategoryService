@@ -95,7 +95,6 @@ steps:
     #commands:
     #  - mkdir -p /kaniko/.docker
     #  - echo "{\"auths\":{\"$REGISTRY_URL\":{\"auth\":\"$(echo -n ${USERNAME}:${PASSWORD} | base64)\"}}}" > /kaniko/.docker/config.json
-    #  - /kaniko/executor --context ${ 
     settings: 
       repo: bajaks/webshop-api-microservices.category-service
       username: 

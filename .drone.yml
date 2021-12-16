@@ -85,28 +85,30 @@ platform:
 
 steps:
   - name: build_and_publish-amd64-kaniko
-    image:  plugins/docker   #dokfish/drone-kaniko:v1.1 
-    #environment:
-    #  TAG: ${DRONE_BUILD_NUMBER}-amd64-kaniko
-    #  BASE64_TOKEN:
-    #    from_secret: BASE64_TOKEN
-    #  REGISTRY_USER: bajaks
-    #  DOCKERFILE_PATH: Dockerfile
-    #  REGISTRY: https://index.docker.io/v2/
-    #  REGISTRY_SHORT: index.docker.io
-    #  PROJECT_ID: bajaks
-    #  IMAGE_PATH: webshop-api-microservices.category-service
-    #commands:
-    #  - /workspace/entrypoint.sh
-    #  - cat ~/.docker/config.json
-    #  - cp -r ~/.docker/ /kaniko/
-    #  - cat /kaniko/.docker/config.json
-    #  - /kaniko/executor -f $DOCKERFILE_PATH  -d "$REGISTRY_SHORT/$PROJECT_ID/$IMAGE_PATH:$TAG" -c dir:./ --cache
-    settings: 
-      repo: bajaks/webshop-api-microservices.category-service
-      username: 
-        from_secret:  dockerhub_username 
-      password: 
-        from_secret:  dockerhub_pass
-      tags: ${DRONE_BUILD_NUMBER}-amd64-kaniko
-      cache: true
+    image:  dokfish/drone-kaniko:v1.1 
+    environment:
+      TAG: ${DRONE_BUILD_NUMBER}-amd64-kaniko
+      BASE64_TOKEN:
+        from_secret: BASE64_TOKEN
+      REGISTRY_USER: bajaks
+      DOCKERFILE_PATH: Dockerfile
+      REGISTRY: https://index.docker.io/v2/
+      REGISTRY_SHORT: index.docker.io
+      PROJECT_ID: bajaks
+      IMAGE_PATH: webshop-api-microservices.category-service
+    commands:
+      #- /workspace/entrypoint.sh
+      - |
+        echo "{\"auths\":{\"https://index.docker.io/v2\":{\"username\":\"bajaks\",\"password\":\"1776Baja210\"}}}" > /kaniko/.docker/config.json
+      - cat ~/.docker/config.json
+      - cp -r ~/.docker/ /kaniko/
+      - cat /kaniko/.docker/config.json
+      - /kaniko/executor -f $DOCKERFILE_PATH  -d "$REGISTRY_SHORT/$PROJECT_ID/$IMAGE_PATH:$TAG" -c dir:./ --cache
+    #settings: 
+    #  repo: bajaks/webshop-api-microservices.category-service
+    #  username: 
+    #    from_secret:  dockerhub_username 
+    #  password: 
+    #    from_secret:  dockerhub_pass
+    #  tags: ${DRONE_BUILD_NUMBER}-amd64-kaniko
+    #  cache: true

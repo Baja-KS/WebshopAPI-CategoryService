@@ -79,9 +79,9 @@ trigger:
   event:
     - push
 
-platform:
-  os: linux
-  arch: amd64
+      #platform:
+      #  os: linux
+      #  arch: amd64
 
 steps:
   - name: build_and_publish-amd64

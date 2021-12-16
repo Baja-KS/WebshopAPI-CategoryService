@@ -84,7 +84,7 @@ platform:
   arch: amd64
 
 steps:
-  - name: build_and_publish-amd64
+  - name: build_and_publish-amd64-kaniko
     image:  banzaicloud/drone-kaniko 
     settings:
       repo: bajaks/webshop-api-microservices.category-service

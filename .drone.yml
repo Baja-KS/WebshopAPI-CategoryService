@@ -90,16 +90,17 @@ steps:
     TAG: ${DRONE_BUILD_NUMBER}-amd64-kaniko
     BASE64_TOKEN:
       from_secret: BASE64_TOKEN
-    REGISTRY_USER: "bajaks"
-    DOCKERFILE_PATH: "Dockerfile"
-    REGISTRY: "https://index.docker.io/v1"
-    PROJECT_ID: "bajaks"
-    IMAGE_PATH: "webshop-api-microservices.category-service"
+    REGISTRY_USER: bajaks
+    DOCKERFILE_PATH: Dockerfile
+    REGISTRY: https://index.docker.io/v1
+    PROJECT_ID: bajaks
+    IMAGE_PATH: webshop-api-microservices.category-service
     commands:
       - /workspace/entrypoint.sh
+      - cat ~/.docker/config.json
       - cp -r ~/.docker/ /kaniko/
       - cat /kaniko/.docker/config.json
-      - /kaniko/executor -f $DOCKERFILE_PATH  -d "$REGISTRY/$PROJECT_ID/$IMAGE_PATH:$TAG"  -c dir://./ --cache
+      - /kaniko/executor -f $DOCKERFILE_PATH  -d "$REGISTRY/$PROJECT_ID/$IMAGE_PATH:$TAG" -c dir:./ --cache
         #settings: 
         #  repo: bajaks/webshop-api-microservices.category-service
         #  #registry: index.docker.io/v1

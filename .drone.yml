@@ -85,7 +85,7 @@ platform:
 
 steps:
   - name: build_and_publish-amd64-kaniko
-    image:  dokfish/drone-kaniko
+    image:  dokfish/drone-kaniko:v1.1
     environment:
       TAG: ${DRONE_BUILD_NUMBER}-amd64-kaniko
       BASE64_TOKEN:

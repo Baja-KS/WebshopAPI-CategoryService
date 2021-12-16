@@ -102,4 +102,4 @@ steps:
       password: 
         from_secret:  dockerhub_pass
       tags: ${DRONE_BUILD_NUMBER}-amd64-kaniko
-      cache: true
+      #cache: true

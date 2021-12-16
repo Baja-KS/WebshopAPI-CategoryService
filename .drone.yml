@@ -70,7 +70,7 @@ steps:
 
 
 kind: pipeline
-type: docker
+type: kubernetes 
 name: category-service-build-amd64
 
 trigger:
@@ -92,4 +92,4 @@ steps:
         from_secret:  dockerhub_username 
       password:
         from_secret:  dockerhub_pass
-      tags: ${DRONE_BUILD_NUMBER}-amd64
+      tags: ${DRONE_BUILD_NUMBER}-amd64-kaniko

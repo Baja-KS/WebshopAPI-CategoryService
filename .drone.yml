@@ -18,7 +18,7 @@ steps:
   image:  plugins/docker
   settings:
     repo: bajaks/webshop-api-microservices.category-service
-   username:
+    username:
       from_secret:  dockerhub_username 
     password:
       from_secret:  dockerhub_pass
@@ -42,7 +42,7 @@ steps:
 - name: change-img-version
   image:  linuxserver/yq:arm32v7-latest
   commands: 
-    - TAG=${DRONE_BUILD_NUMBER}-arm32v7 yq -i -y '.microservice.tag = "${DRONE_BUILD_NUMBER}-arm32v7" ' WebshopAPI-helm/values.yaml
+    - TAG=${DRONE_BUILD_NUMBER}-arm32v7 yq -i -y '.microservice.deployment.tag = "${DRONE_BUILD_NUMBER}-arm32v7" ' WebshopAPI-helm/values.yaml
 - name: git-push
   image:  alpine/git
   environment:

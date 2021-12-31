@@ -6,7 +6,7 @@ name: category-service-build-arm
 trigger:
  branch:
     - master
-  event:
+ event:
     - push
 
 platform:

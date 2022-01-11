@@ -1,4 +1,4 @@
-module CategoryService
+module github.com/Baja-KS/WebshopAPI-CategoryService
 
 go 1.16
 
